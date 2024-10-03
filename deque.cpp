@@ -9,6 +9,8 @@ private:
 public:
     deque() {
         blocksize = 8;
+        
+        data.push_back(new)
     }
     void push_back(const T& elem) {
         T* ptr = data.back().first;
@@ -39,12 +41,22 @@ public:
         T* ptr = data.back().first;
         int* size = data.back().second;
         ptr[--*size] = 0;
+        if (*size == 0) {
+            delete[] ptr;
+            delete size;
+            data.pop_back();
+        }
     }
     void pop_front() {
         T* ptr = data.front().first;
         int* size = data.front().second;
         ptr[blocksize-*size] = 0;
         *size--;
+        if (*size == 0) {
+            delete[] ptr;
+            delete size;
+            data.erase(data.begin());
+        }
     }
     T& front() {
         T* ptr = data.front().first;
