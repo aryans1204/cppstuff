@@ -3,6 +3,7 @@
 #include <memory>
 #include <string>
 
+
 struct Order {
     std::string type;
     int qty;
